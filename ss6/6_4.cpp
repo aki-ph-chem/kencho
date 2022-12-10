@@ -2,7 +2,9 @@
 #include<vector>
 #include<algorithm> 
 
-const int INF = 2000000;
+// ss3での実装(O(N^2)と比べると一部挙動がおかしい)
+
+const int INF = 20000;
 int main(){
     int N,K;
     std::cin >> N >> K;
@@ -15,7 +17,7 @@ int main(){
     for(int i=0; i < N; i++){
         // _b >= K - a[i]( _b + a[i] >= K) を満たす最小の添字i探す
         // a[i] + _b >= Kとなる_bをa[i]ごとにさがしておく(O(longN))   
-        auto iter = lower_bound(b.begin(), b.end(), K - a[i]);
+        auto iter = std::lower_bound(b.begin(), b.end(), K - a[i]);
         int val = *iter;
 
         if(a[i] + val < min_value ){
