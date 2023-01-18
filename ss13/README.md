@@ -47,6 +47,7 @@ graph LR
 
 前者を<b>深さ優先探索(DFS)</b>といい後者を<b>幅優先探索(BFS)</b>という。
 これらを実現するためにはtodoはDFSではスタックをBFSではキューを用いる。
+C++の場合の具体的なデータ型を以下の表にまとめておいた。
 
 ```mermaid
 graph LR
@@ -64,3 +65,69 @@ graph LR
     style 8 fill:#a9ceec,stroke:#333
 ```
 
+グラフ探索で用いる２つのデータ
+| 変数名 | データ型 | 説明 |
+|--------|----------|------|
+| seen   | std::vector<bool> | seen[v]=trueのときその頂点vは訪問済み | 
+| todo   | std::stack<int>またはstd::queue<int> | これから訪問する頂点を格納する | 
+
+## 具体的なグラフに対する深さ優先探索の動き
+
+1. 
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#ff7,stroke:#333
+```
+
+2. 
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+```
+
+3. 
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+    style 1 fill:#f9f,stroke:#333
+    style 3 fill:#ff7,stroke:#333
+    style 6 fill:#ff7,stroke:#333
+```
+
+4. 
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+    style 1 fill:#f9f,stroke:#333
+    style 3 fill:#f9f,stroke:#333
+    style 6 fill:#ff7,stroke:#333
+    style 7 fill:#ff7,stroke:#333
+```
