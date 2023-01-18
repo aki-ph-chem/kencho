@@ -35,7 +35,7 @@ $$
 を満たす。
 
 
-一方、$x$ において $p^{\prime}$ 以外の任意の区間 $q$ を考えると
+一方、 $x$ において $p^{\prime}$ 以外の任意の区間 $q$ を考えると
 
 $$
 p^{\prime}.\text{right} \le q.\text{left} \tag{3} 
