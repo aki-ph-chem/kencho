@@ -68,8 +68,8 @@ graph LR
 グラフ探索で用いる２つのデータ
 | 変数名 | データ型 | 説明 |
 |--------|----------|------|
-| seen   | std::vector<bool> | seen[v]=trueのときその頂点vは訪問済み | 
-| todo   | std::stack<int>またはstd::queue<int> | これから訪問する頂点を格納する | 
+| seen   | std::vector\<bool\> | seen[v]=trueのときその頂点vは訪問済み | 
+| todo   | std::stack\<int\>またはstd::queue\<int\> | これから訪問する頂点を格納する | 
 
 ## 具体的なグラフに対する深さ優先探索の動き
 
