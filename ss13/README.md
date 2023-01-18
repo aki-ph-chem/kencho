@@ -4,7 +4,7 @@
 
 
 頂点 $0$よりスタートして隣接する頂点に進むことを考える。
-下の図ではまず頂点 $0$を探索する。探索が終わった頂点はピンク色で示している。頂点 $0$ の次には隣接する頂点 $1,4,2$ が考えられる。
+下の図ではまず頂点 $0$ を探索する。探索が終わった頂点はピンク色で示している。頂点 $0$ の次には隣接する頂点 $1,4,2$ が考えられる。
 そこでこれらの頂点を"これから読む"という意味をこめた集合todoに入れる。集合todoに入れられた頂点は図中では黄色で示されている。
 
 ```mermaid
@@ -73,7 +73,10 @@ graph LR
 
 ## 具体的なグラフに対する深さ優先探索の動き
 
-1. 
+ここでは13_1.cppで実装した再帰関数による深さ優先探索の実際の動きを具体的なグラフを例にして以下に示す。
+
+1. まず、dfs(G,0)が呼び出され、頂点 $0$ に入り、頂点 $0$ が探索済みとなる。 
+このとき頂点 $0$に隣接している頂点 $5$が探索予定の状態となる。
 ```mermaid
 graph LR
     4-->2-->5
@@ -86,7 +89,8 @@ graph LR
     style 5 fill:#ff7,stroke:#333
 ```
 
-2. 
+2. 1で探索予定としていた頂点 $5$ に入り、その後頂点 $5$ から辿れる頂点は存在しないため、
+いったん再帰関数dfs(G,0)から抜ける。 
 ```mermaid
 graph LR
     4-->2-->5
@@ -99,7 +103,7 @@ graph LR
     style 5 fill:#f9f,stroke:#333
 ```
 
-3. 
+3. 次にmain関数内のforループに戻ってdfs(G,1)が呼び出され頂点 $1$ に入る。 
 ```mermaid
 graph LR
     4-->2-->5
@@ -115,7 +119,7 @@ graph LR
     style 6 fill:#ff7,stroke:#333
 ```
 
-4. 
+4. 頂点 $1$ に隣接している頂点は $3,6$ であるので、小さい頂点 $3$ に入る。 
 ```mermaid
 graph LR
     4-->2-->5
@@ -130,4 +134,84 @@ graph LR
     style 3 fill:#f9f,stroke:#333
     style 6 fill:#ff7,stroke:#333
     style 7 fill:#ff7,stroke:#333
+```
+
+5. 頂点 $3$ に隣接している頂点は頂点 $0,7$ の二種類であるが、
+頂点 $0$ は既に探索済み(seen[0]=true)であるので頂点 $7$ に入る。 
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+    style 1 fill:#f9f,stroke:#333
+    style 3 fill:#f9f,stroke:#333
+    style 6 fill:#ff7,stroke:#333
+    style 7 fill:#f9f,stroke:#333
+```
+
+6. 頂点 $7$ からは頂点 $0$ へと行けるが、頂点 $0$ は既に訪問済みであるので
+頂点 $7$ に関する再帰関数dfs(G,7)を抜けて、続いてdfs(G,3)を抜けて
+関数dfs(G,1)に戻る。そして頂点 $1$ から行ける頂点 $6$ に行く。
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+    style 1 fill:#f9f,stroke:#333
+    style 3 fill:#f9f,stroke:#333
+    style 6 fill:#f9f,stroke:#333
+    style 7 fill:#f9f,stroke:#333
+```
+
+7. 頂点 $6$ から行ける頂点は全て探索済みとなているため、
+頂点 $1$ に戻るが頂点 $1$ から行ける頂点も全て探索済みとなっているため
+dfs(G,1)を抜けてmain関数に戻る。forループでdfs(G,2)が呼び出され、頂点 $2$ に入る。
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+    style 1 fill:#f9f,stroke:#333
+    style 3 fill:#f9f,stroke:#333
+    style 6 fill:#f9f,stroke:#333
+    style 7 fill:#f9f,stroke:#333
+    style 2 fill:#f9f,stroke:#333
+    style 2 fill:#f9f,stroke:#333
+```
+
+8. 頂点 $2$ から訪問できる頂点はすべて探索済みとなっているためすぐにdfs(G,2)を抜けてmain関数に戻り、forループで v = 3は既にseen[3] = true 
+となているためv = 4の場合に進み、dfs(G,4)が呼び出され、頂点 $4$ に入る。頂点 $4$ から行ける頂点は既に探索済みとなっているためdfs(G,4)を抜ける。
+v = $5,6,7$ のケースも既に探索済みであるので反復を終える。
+```mermaid
+graph LR
+    4-->2-->5
+    2-->7
+    4-->6-->7-->0
+    4-->1-->3-->0-->5
+    1-->6
+    3-->7
+    style 0 fill:#f9f,stroke:#333
+    style 5 fill:#f9f,stroke:#333
+    style 1 fill:#f9f,stroke:#333
+    style 3 fill:#f9f,stroke:#333
+    style 6 fill:#f9f,stroke:#333
+    style 7 fill:#f9f,stroke:#333
+    style 2 fill:#f9f,stroke:#333
+    style 2 fill:#f9f,stroke:#333
+    style 4 fill:#f9f,stroke:#333
 ```
