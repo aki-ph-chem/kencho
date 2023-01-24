@@ -3,7 +3,11 @@
 買ったは良いものの、積読にしてから放ったらかしているのでそろそろちゃんとアルゴリズムやらないと...。
 ということで
 
-## ss1 [アルゴリズムとは]()
+[講談社の紹介サイト](https://www.kspub.co.jp/book/detail/5128442.html)
+
+<img src="https://www.kspub.co.jp/book/detail/images/5731c305f06ae1057f7fc3bb3f3f30ba06ffb6b8.jpg" widht="200" height="300">
+
+## ss1 アルゴリズムとは
 ## ss2 [計算量とオーダー記号]()
 ## ss3 [全探索](./ss3)
 ## ss4 [再帰](./ss4)
