@@ -8,7 +8,7 @@
 <img src="https://www.kspub.co.jp/book/detail/images/5731c305f06ae1057f7fc3bb3f3f30ba06ffb6b8.jpg" widht="200" height="300">
 
 ## ss1 アルゴリズムとは
-## ss2 [計算量とオーダー記号]()
+## ss2 [計算量とオーダー記号](./ss2)
 ## ss3 [全探索](./ss3)
 ## ss4 [再帰](./ss4)
 ## ss5 [動的計画法](./ss5)
