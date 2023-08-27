@@ -15,4 +15,10 @@ int main(void) {
     for(int i = 0; i < a.size(); ++i){
         q.push(std::make_pair(a[i], i));
     }
+
+    while(!q.empty()) {
+        std::cout <<"q: first = " << q.top().first << ", ";
+        std::cout <<"q: second = " << q.top().second << std::endl;
+        q.pop();
+    }
 }
