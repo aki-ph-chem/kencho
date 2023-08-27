@@ -24,15 +24,17 @@ int main(void) {
         qg_0.push(std::make_pair(array[i], i));
     }
 
-    std::cout << "ql_0" << "\n";
+    std::cout << "std::less" << "\n";
     while(!ql_0.empty()) {
-        std::cout <<"ql_0 = " << ql_0.top().second << "\n";
+        //std::cout <<"ql_0 = " << ql_0.top().second << "\n";
+        std::cout <<"ql_0 = " << ql_0.top().first << "\n";
         ql_0.pop();
     }
 
-    std::cout << "qg_0" << "\n";
+    std::cout << "std::greater" << "\n";
     while(!qg_0.empty()) {
-        std::cout <<"qg_0 = " << qg_0.top().second << "\n";
+        //std::cout <<"qg_0 = " << qg_0.top().second << "\n";
+        std::cout <<"qg_0 = " << qg_0.top().first << "\n";
         qg_0.pop();
     }
 }
