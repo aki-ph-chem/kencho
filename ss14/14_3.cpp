@@ -35,7 +35,7 @@ int main(void) {
     }
     // ダイクストラ法
     std::vector<long long> dist(N, INF);
-    dist[0] = 0;
+    dist[s] = 0;
     // (d[v], v)のペアを要素とするヒープを作る
     std::priority_queue<std::pair<long long, int>,
         std::vector<std::pair<long long, int>>,
