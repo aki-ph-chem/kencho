@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 
-void I_Sort(vector<int> &a){
+void I_Sort(std::vector<int> &a){
     int N = (int)a.size();
     for(int i = 1; i < N ;i++){
         // 挿入する値v
