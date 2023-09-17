@@ -45,6 +45,58 @@ $$
 T(N) = O(N^2) 
 $$
 
+#### 例:最近点問題 
+
+正の数 $N$ と $N$ 個の座標値 $(x_i, y_i) \quad (i = 0,1,\dots,N - 1)$ に対して最も短い二点間の距離
+
+まず、全部の点同士の距離を計算するアルゴリズムが思い浮かぶ
+
+```C++
+double result = std::pow(10,4);
+for(std::size_t i=0; i<N; ++i) {
+    for(std::size_t j=0; j<N; ++j) {
+            double min_tmp =  dist(x_array[i], y_array[i], x_array[j], y_array[j]);
+            if(result > min_tmp ) {
+                result = min_tmp;
+            }
+    }
+}
+```
+
+しかし、同じ点の間の距離はゼロであることと距離の対称性より点 $i$ に対しする $j$ は $j = i+1, i + 2, \dots, N - 1$だけでよいため以下のように
+すればよい。
+
+```C++
+double result = std::pow(10,4);
+for(std::size_t i=0; i<N; ++i) {
+    for(std::size_t j=i+1; j<N; ++j) {
+            double min_tmp =  dist(x_array[i], y_array[i], x_array[j], y_array[j]);
+            if(result > min_tmp ) {
+                result = min_tmp;
+            }
+    }
+}
+```
+
+このとき
+
+- $i = 0$ のとき $j = 1,2,\dots,N-1$ ($N - 1$ 回) 
+- $i = 1$ のとき $j = 2,3,\dots,N-1$ ($N - 2$ 回) 
+- $\dots$
+- $i = N - 2$ のとき$j = N - 1$ (1 回) 
+- $i = N - 1$ のとき(0 回) 
+
+であるので時間計算量 $T(N)$ は
+
+$$
+\begin{align}
+T(N) &= (N - 1) + (N - 2) + (N - 3) + \dots + 2 + 1 + 0 \\
+     &= \frac{1}{2}(N^2 - N)
+\end{align}
+$$
+
+となるため $O(\frac{1}{2}(N^2 - N)) = O(N^2)$ である。
+
 ### $\Omega$ 記法
 
 $O$ は"上から抑えて"評価する考えかたであったが、逆に下から抑えて評価する方法として $\Omega$ 記法がある。
